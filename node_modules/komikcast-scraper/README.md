@@ -1,0 +1,82 @@
+# KOMIKCAST API SCRAPER
+
+## How to use
+
+1. Install Packages
+   ```sh
+   npm install github:xct007/komikcast-scraper
+   ```
+   or using yarn
+   ```sh
+   yarn add github:xct007/komikcast-scraper
+   ```
+2. Example
+
+   ```js
+   // CJS
+   const { detail, latest, search } = require('komikcast-scraper');
+
+   // ESM
+   import { detail, latest, search } from 'komikcast-scraper';
+   // Get latest comic update
+
+   latest().then(async (data) => {
+     console.log(data);
+   });
+
+   /*
+    Can be complete link url
+    eg. https://komikcast.me/komik/im-an-evil-god/
+    eg. https://komikcast.me/komik/im-an-evil-god-chapter-270-bahasa-indonesia/
+
+    OR just LinkId
+    eg. im-an-evil-god
+    eg. im-an-evil-god-chapter-270-bahasa-indonesia
+    */
+
+   // Get info comic
+
+   detail('https://komikcast.me/komik/im-an-evil-god/').then((data) => {
+     console.log(data);
+   });
+
+   // Get comic chapter
+
+   detail('im-an-evil-god-chapter-270-bahasa-indonesia').then((data) => {
+     console.log(data);
+   });
+
+   // Search comics
+   search('pico').then((json) => {
+     console.log(json);
+   });
+   ```
+
+## How it works
+
+Its directly send GET request to they own api that return JSON.
+The url for request is not `https://komikcast.site/` but `https://apk.nijisan.my.id/*`
+
+### API router
+
+- Fetch latest comic
+  `https://apk.nijisan.my.id/premium/home/latest/1/1`
+- Search comic
+  `https://apk.nijisan.my.id/komik/search/{query}/1/1`
+- Get comic info
+  `https://apk.nijisan.my.id/komik/info/{linkId}`
+- Get comic chapter info
+  `https://apk.nijisan.my.id/komik/baca/{LinkId}`
+
+# Contributing
+
+```
+1. Fork the Repo
+2. Commit your Changes
+3. Push to the Branch
+4. Open a Pull Request
+```
+
+## Contact
+
+David - [@david.stefen](https://instagram.com/david.stefen)
